@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тренажеры ЕГЭ по Обществознанию</title> <link rel="stylesheet" href="style.css">
+    <title>Тренажеры ЕГЭ по Обществознанию</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     </head>
 <body>
 
     <div class="container">
         <header>
-            <h1>Ваши Помощники для ЕГЭ по Обществознанию</h1> <p class="subtitle">Тренажеры PlanBot (Задание 24) и TestMaster (Тестовая часть)</p>
+            <h1>Ваши Помощники для ЕГЭ по Обществознанию</h1>
+            <p class="subtitle">Тренажеры PlanBot (Задание 24) и TestMaster (Тестовая часть)</p>
         </header>
 
-        <hr class="section-divider"> <section id="planbot-intro">
+        <hr class="section-divider">
+
+        <section id="planbot-intro">
             <h2>PlanBot: Тренажер Задания 24 (Сложный план)</h2>
             <p>Надоело писать планы "в стол"? Хотите объективно оценить свою подготовку и понять, как её улучшить? PlanBot — ваш персональный помощник по заданию 24!</p>
         </section>
-
         <section id="planbot-features">
             <h3>Что умеет PlanBot:</h3>
             <ul>
@@ -30,7 +33,6 @@
                 <li><i class="fas fa-history icon"></i> <b>Отслеживание прогресса:</b> Бот помнит ваши тренировки.</li>
             </ul>
         </section>
-
         <section id="planbot-benefits">
             <h3>PlanBot поможет вам:</h3>
             <ul>
@@ -40,61 +42,67 @@
                 <li><i class="fas fa-stopwatch icon"></i> Эффективно использовать время на подготовку.</li>
             </ul>
         </section>
-
         <section id="pricing-planbot" class="pricing-section">
             <h3>Доступ к PlanBot (Задание 24):</h3>
-            <div class="price-options-container"> <div class="price-option card"> <p><strong>Доступ до конца учебного года</strong><br>(до 31 августа 2025)</p>
+            <div class="price-options-container">
+                <div class="price-option card">
+                    <p><strong>Доступ до конца учебного года</strong><br>(до 31 августа 2025)</p>
                     <p class="price">990 ₽</p>
-                    <a href="[ССЫЛКА_ОПЛАТЫ_PLANBOT_ГОД]" class="button buy-button">Купить PlanBot (год)</a>
+                    <button id="buy_planbot_year" data-product-id="planbot_year" class="button buy-button">Купить PlanBot (год)</button>
                 </div>
-                 <div class="price-option card"> <p><strong>Доступ на 1 месяц</strong><br>(30 дней с момента оплаты)</p>
+                 <div class="price-option card">
+                     <p><strong>Доступ на 1 месяц</strong><br>(30 дней с момента оплаты)</p>
                      <p class="price">290 ₽</p>
-                     <a href="[ССЫЛКА_ОПЛАТЫ_PLANBOT_МЕСЯЦ]" class="button buy-button">Купить PlanBot (месяц)</a>
+                     <button id="buy_planbot_month" data-product-id="planbot_month" class="button buy-button">Купить PlanBot (месяц)</button>
                  </div>
              </div>
         </section>
 
-        <hr class="section-divider"> <section id="testmaster-intro">
-            <h2>TestMaster: Тренажёр Тестовой Части</h2>
-            <p>Хотите довести решение тестовой части до автоматизма? TestMaster поможет отработать все типы заданий первой части ЕГЭ по обществознанию и выявить ваши слабые места.</p>
-        </section>
+        <hr class="section-divider">
 
+        <section id="testmaster-intro">
+             <h2>TestMaster: Тренажёр Тестовой Части</h2>
+             <p>Хотите довести решение тестовой части до автоматизма? TestMaster поможет отработать все типы заданий первой части ЕГЭ по обществознанию и выявить ваши слабые места.</p>
+        </section>
         <section id="testmaster-features">
             <h3>Что умеет TestMaster:</h3>
-            <ul>
-                <li><i class="fas fa-list-check icon"></i> <b>Практика всех типов заданий:</b> Одиночный выбор, множественный выбор, на соответствие, определение терминов и т.д. (Задания 1-16).</li>
-                <li><i class="fas fa-database icon"></i> <b>Большая база вопросов:</b> Актуальные задания на основе открытого банка ФИПИ и авторские вопросы.</li>
-                <li><i class="fas fa-comments icon"></i> <b>Мгновенная обратная связь:</b> Проверка ответов с пояснениями к правильным вариантам.</li>
-                 <li><i class="fas fa-layer-group icon"></i> <b>Тренировка по темам и блокам:</b> Возможность отрабатывать конкретные разделы кодификатора (Человек и общество, Экономика, Социальные отношения, Политика, Право).</li>
-                 <li><i class="fas fa-graduation-cap icon"></i> <b>Режим "Мини-экзамен":</b> Симуляция решения варианта тестовой части с ограничением по времени (опционально).</li>
-                 <li><i class="fas fa-chart-pie icon"></i> <b>Статистика и анализ ошибок:</b> Отслеживание прогресса и определение проблемных тем.</li>
-            </ul>
+             <ul>
+                 <li><i class="fas fa-list-check icon"></i> <b>Практика всех типов заданий:</b> Задания 1-16.</li>
+                 <li><i class="fas fa-database icon"></i> <b>Большая база вопросов:</b> Актуальные задания ФИПИ и авторские.</li>
+                 <li><i class="fas fa-comments icon"></i> <b>Мгновенная обратная связь:</b> Проверка с пояснениями.</li>
+                 <li><i class="fas fa-layer-group icon"></i> <b>Тренировка по темам и блокам:</b> Человек и общество, Экономика, и т.д.</li>
+                 <li><i class="fas fa-graduation-cap icon"></i> <b>Режим "Мини-экзамен":</b> Симуляция варианта.</li>
+                 <li><i class="fas fa-chart-pie icon"></i> <b>Статистика и анализ ошибок:</b> Отслеживание прогресса.</li>
+             </ul>
         </section>
-
         <section id="testmaster-benefits">
-            <h3>TestMaster поможет вам:</h3>
-            <ul>
-                <li><i class="fas fa-check-circle icon"></i> Уверенно решать все типы тестовых заданий.</li>
-                <li><i class="fas fa-bullseye icon"></i> Определить и устранить пробелы в знаниях по конкретным темам.</li>
-                <li><i class="fas fa-tachometer-alt icon"></i> Увеличить скорость решения тестов.</li>
-                <li><i class="fas fa-award icon"></i> Подойти к экзамену с максимальной готовностью в тестовой части.</li>
-            </ul>
+             <h3>TestMaster поможет вам:</h3>
+             <ul>
+                 <li><i class="fas fa-check-circle icon"></i> Уверенно решать все типы тестовых заданий.</li>
+                 <li><i class="fas fa-bullseye icon"></i> Определить и устранить пробелы в знаниях.</li>
+                 <li><i class="fas fa-tachometer-alt icon"></i> Увеличить скорость решения тестов.</li>
+                 <li><i class="fas fa-award icon"></i> Подойти к экзамену с максимальной готовностью.</li>
+             </ul>
         </section>
-
         <section id="pricing-testmaster" class="pricing-section">
             <h3>Доступ к TestMaster (Тестовая часть):</h3>
-             <div class="price-options-container"> <div class="price-option card"> <p><strong>Доступ до конца учебного года</strong><br>(до 31 августа 2025)</p>
-                    <p class="price">[ЦЕНА_ТЕСТ_ГОД] ₽</p> <a href="[ССЫЛКА_ОПЛАТЫ_TESTMASTER_ГОД]" class="button buy-button">Купить TestMaster (год)</a>
+             <div class="price-options-container">
+                <div class="price-option card">
+                    <p><strong>Доступ до конца учебного года</strong><br>(до 31 августа 2025)</p>
+                    <p class="price">[ЦЕНА_ТЕСТ_ГОД] ₽</p> <button id="buy_testmaster_year" data-product-id="testmaster_year" class="button buy-button">Купить TestMaster (год)</button>
                 </div>
-                 <div class="price-option card"> <p><strong>Доступ на 1 месяц</strong><br>(30 дней с момента оплаты)</p>
-                     <p class="price">[ЦЕНА_ТЕСТ_МЕСЯЦ] ₽</p> <a href="[ССЫЛКА_ОПЛАТЫ_TESTMASTER_МЕСЯЦ]" class="button buy-button">Купить TestMaster (месяц)</a>
+                 <div class="price-option card">
+                     <p><strong>Доступ на 1 месяц</strong><br>(30 дней с момента оплаты)</p>
+                     <p class="price">[ЦЕНА_ТЕСТ_МЕСЯЦ] ₽</p> <button id="buy_testmaster_month" data-product-id="testmaster_month" class="button buy-button">Купить TestMaster (месяц)</button>
                  </div>
             </div>
         </section>
 
-        <hr class="section-divider"> <section id="common-notes">
-             <p class="note">После успешной оплаты доступ к выбранному боту(ам) будет предоставлен автоматически. Убедитесь, что вы используете бот(ы) с того же Telegram-аккаунта, с которого производилась оплата.</p>
-             <p class="note">Не забудьте подписаться на канал <a href="https://t.me/obshestvonapalcah" target="_blank" rel="noopener noreferrer">"Общество на пальцах"</a> для полезных материалов и новостей!</p>
+        <hr class="section-divider">
+
+        <section id="common-notes">
+             <p class="note">После успешной оплаты доступ к выбранному боту(ам) будет предоставлен автоматически. Убедитесь, что вы используете бот(ы) с того же Telegram-аккаунта.</p>
+             <p class="note">Не забудьте подписаться на канал <a href="https://t.me/obshestvonapalcah" target="_blank" rel="noopener noreferrer">"Общество на пальцах"</a>!</p>
         </section>
 
         <footer>
