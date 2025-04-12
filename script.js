@@ -4,9 +4,9 @@ if (window.Telegram && window.Telegram.WebApp) {
     console.log('Telegram WebApp object FOUND.');
     // Можно даже проверить initData здесь, но он может быть еще не готов
     // console.log('Initial initData:', window.Telegram.WebApp.initData || 'Not available yet');
+    // console.log('Initial initDataUnsafe:', window.Telegram.WebApp.initDataUnsafe || 'Not available yet');
 } else {
     console.error('Telegram WebApp object NOT FOUND!');
-    // Показать ошибку пользователю сразу, если объект ТГ не найден
     const errorDiv = document.getElementById('error-message');
      if (errorDiv) {
         errorDiv.textContent = 'Ошибка: Не удалось загрузить окружение Telegram.';
@@ -24,7 +24,6 @@ if (tg && typeof tg === 'object') {
     console.log('tg.ready() and tg.expand() called.');
 } else {
      console.error('Cannot call tg.ready() or tg.expand() because tg object is invalid.');
-     // Возможно, стоит показать ошибку пользователю и здесь
 }
 
 
@@ -38,7 +37,7 @@ const errorDisplayElement = document.getElementById('error-message'); // Убе�
 function showClientError(message) {
     if (errorDisplayElement) {
         errorDisplayElement.textContent = message;
-        errorDisplayElement.style.display = 'block'; // Показать элемент
+        errorDisplayElement.style.display = 'block';
     }
     console.error("Client Error:", message);
 }
@@ -47,25 +46,31 @@ function showClientError(message) {
 function clearClientError() {
      if (errorDisplayElement) {
         errorDisplayElement.textContent = '';
-        errorDisplayElement.style.display = 'none'; // Скрыть элемент
+        errorDisplayElement.style.display = 'none';
     }
 }
 
 // Функция обработки клика по кнопке покупки
 async function handlePurchaseClick(event) {
-    clearClientError(); // Очищаем предыдущие ошибки
+    clearClientError();
     const button = event.currentTarget;
     const productId = button.dataset.productId;
 
     console.log('handlePurchaseClick called for productId:', productId);
 
-    // --- Усиленная проверка перед получением initData ---
-    if (!tg || typeof tg !== 'object' || !tg.initData) {
-        console.error('Telegram WebApp environment or initData not ready/available at click time!');
-        console.log('Current tg object:', tg);
-        console.log('Current tg.initData:', tg ? tg.initData : 'tg is undefined');
-        showClientError('Ошибка: Данные Telegram недоступны для начала оплаты.');
-        // Возможно, не стоит блокировать кнопки, если ошибка на этом этапе
+    // --- Проверка окружения и данных ПЕРЕД попыткой ---
+    console.log('Checking environment at click time...');
+    console.log('Current tg object:', tg);
+    const currentInitData = tg ? tg.initData : 'tg_is_undefined';
+    const currentInitDataUnsafe = tg ? JSON.stringify(tg.initDataUnsafe) : 'tg_is_undefined'; // Логируем небезопасные данные тоже
+
+    console.log('Current tg.initData:', currentInitData || 'null_or_empty');
+    console.log('Current tg.initDataUnsafe:', currentInitDataUnsafe || 'null_or_empty');
+
+    // Проверяем именно initData, т.к. он нужен для валидации
+    if (!tg || typeof tg !== 'object' || !currentInitData) {
+        console.error('Telegram WebApp environment or VALIDATED initData not ready/available at click time!');
+        showClientError('Ошибка: Данные Telegram недоступны для начала оплаты (initData missing).');
         return;
     }
     // --- Конец проверки ---
@@ -87,13 +92,9 @@ async function handlePurchaseClick(event) {
     button.disabled = true;
 
     try {
-        const initData = tg.initData; // Теперь мы более уверены, что tg и tg.initData существуют
-        console.log('Raw initData received:', initData);
-
-        // Валидация на всякий случай (хотя основная проверка выше)
-        if (!initData) {
-            throw new Error('Не удалось получить данные инициализации Telegram (initData) - проверка после доступа');
-        }
+        // Используем значение, которое уже проверили
+        const initData = currentInitData;
+        console.log('Using validated initData:', initData);
 
         console.log('Отправка запроса на бэкенд:', INITIATE_PAYMENT_URL);
         console.log('Данные:', { productId: productId, initData: initData });
@@ -165,3 +166,14 @@ if (purchaseButtons.length > 0) {
 
 console.log("Telegram Web App script fully loaded and event listeners attached (if buttons found).");
 
+// --- Добавлено: Попытка проверить initData сразу после инициализации ---
+if (tg && tg.initData) {
+    console.log('InitData IS available right after script load:', tg.initData);
+} else {
+    console.warn('InitData is NOT available right after script load.');
+}
+if (tg && tg.initDataUnsafe) {
+    console.log('InitDataUnsafe IS available right after script load:', JSON.stringify(tg.initDataUnsafe));
+} else {
+     console.warn('InitDataUnsafe is NOT available right after script load.');
+}
